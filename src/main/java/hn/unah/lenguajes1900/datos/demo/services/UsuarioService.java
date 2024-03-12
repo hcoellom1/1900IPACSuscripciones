@@ -12,4 +12,6 @@ public interface UsuarioService {
 
     public Usuario buscarPorId(long id);
 
+    public Usuario actualizarUsuario(long id, Usuario usuario);
+
 }

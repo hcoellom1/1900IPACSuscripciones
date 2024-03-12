@@ -30,6 +30,22 @@ public class UsuarioServiceImpl implements UsuarioService{
         return this.usuarioRepository.findById(id).get();
     }
 
+    @Override
+    public Usuario actualizarUsuario(long id, Usuario usuario) {
+        Usuario usuarioActualizar = this.usuarioRepository.findById(id).get();
+
+        if(null != usuarioActualizar){
+            usuarioActualizar.setNombre(usuario.getNombre());
+            usuarioActualizar.setCorreo(usuario.getCorreo());
+            usuarioActualizar.setTelefono(usuario.getTelefono());
+            usuarioActualizar.setDireccionFacturacion(usuario.getDireccionFacturacion());
+            this.usuarioRepository.save(usuarioActualizar);
+        }
+
+        return usuarioActualizar;
+        
+    }
+
     
     
 }
