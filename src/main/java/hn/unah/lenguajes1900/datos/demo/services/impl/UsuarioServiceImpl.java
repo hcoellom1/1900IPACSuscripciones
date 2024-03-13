@@ -1,6 +1,7 @@
 package hn.unah.lenguajes1900.datos.demo.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
-    public Usuario buscarPorId(long id) {
-        return this.usuarioRepository.findById(id).get();
+    public Optional<Usuario> buscarPorId(long id) {
+        return this.usuarioRepository.findById(id);
     }
 
     @Override
@@ -44,6 +45,18 @@ public class UsuarioServiceImpl implements UsuarioService{
 
         return usuarioActualizar;
         
+    }
+
+    @Override
+    public String eliminarPorId(long id) {
+        //Usuario usuarioEliminar = this.usuarioRepository.findById(id)..get();
+
+        if(this.usuarioRepository.findById(id).isPresent()){
+            this.usuarioRepository.deleteById(id);
+            return "Usuario Eliminado";
+        }       
+
+        return "El usuario no existe";
     }
 
     
