@@ -2,6 +2,9 @@ package hn.unah.lenguajes1900.datos.demo.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,9 +24,9 @@ public class TipoStreaming {
     @Column(name="idstreaming")
     private long idStreaming;
 
-    private String descripcion;
-
-    @OneToMany(mappedBy = "tipoStreaming")
-    private List<Planes> planes;
+    private String descripcion;        
     
+    @JsonManagedReference
+    @OneToMany(mappedBy = "tipoStreaming")
+    private List<Planes> planes;    
 }

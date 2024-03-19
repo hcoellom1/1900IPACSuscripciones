@@ -16,6 +16,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @SuppressWarnings("null")
     @Override
     public Usuario crearUsuario(Usuario usuario) {
         return this.usuarioRepository.save(usuario);
@@ -49,8 +50,6 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public String eliminarPorId(long id) {
-        //Usuario usuarioEliminar = this.usuarioRepository.findById(id)..get();
-
         if(this.usuarioRepository.findById(id).isPresent()){
             this.usuarioRepository.deleteById(id);
             return "Usuario Eliminado";

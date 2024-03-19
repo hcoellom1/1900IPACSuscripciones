@@ -1,5 +1,8 @@
 package hn.unah.lenguajes1900.datos.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +16,7 @@ import lombok.Data;
 @Entity
 @Table(name = "planes")
 @Data
+
 public class Planes {
 
     @Id
@@ -24,7 +28,8 @@ public class Planes {
 
     private double precio;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idstreaming", referencedColumnName = "idstreaming")
     private TipoStreaming tipoStreaming;
     
